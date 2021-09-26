@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <main>
+      <section>
+        <% if (!locals.user) { %>
+        <div>
+          <button><a href="/users/login">Login</a></button>
+        </div>
+        <div>
+          <button><a href="/users/register">Registro</a></button>
+        </div>
+        <% } else { %>
+        <div>
+          <h1>Bienvenida/o <%= locals.user.name %></h1>
+        </div>
+        <div>
+          <button><a href="/users/logout">Logout</a></button>
+        </div>
+        <div>
+          <button>
+            <a href="/movies/createMovies">Agregar Película</a>
+          </button>
+        </div>
+        <% } %>
+      </section>
+
+      <section>
+        <h2>LISTADO de PELICULAS</h2>
+        <% for (let i=0; i < allMovie.length; i++) { %>
+        <ul>
+          <li>
+            <a href="/movies/detailMovies/<%= allMovie[i].id %>">
+              <%= allMovie[i].title %>
+            </a>
+          </li>
+        </ul>
+        <% } %>
+      </section>
+    </main>
+  </body>
+</html>

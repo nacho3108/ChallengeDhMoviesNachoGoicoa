@@ -1,10 +1,10 @@
 const bcrypt = require("bcryptjs");
 const db = require("./../database/models");
-const todosUsuarios = db.user;
+const allUsers = db.User;
 const sequelize = db.sequelize;
 const crypto = require("crypto");
 
-const controladorUsuarios = {
+const usersController = {
   register: (req, res) => {
     return res.render("register");
   },
@@ -15,7 +15,7 @@ const controladorUsuarios = {
       password: bcrypt.hashSync(req.body.password, 10),
     };
 
-    todosUsuarios
+    allUsers
       .create(newUser)
       .then(() => {
         return res.redirect("login");
@@ -30,7 +30,7 @@ const controladorUsuarios = {
   },
 
   processLogin: (req, res) => {
-    todosUsuarios
+    allUsers
       .findOne({ where: { email: req.body.email } })
       .then((user) => {
         if (user) {
@@ -85,4 +85,4 @@ const controladorUsuarios = {
   },
 };
 
-module.exports = controladorUsuarios;
+module.exports = usersController;

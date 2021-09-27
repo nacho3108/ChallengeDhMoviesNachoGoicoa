@@ -2,29 +2,24 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+ 
+    <title>Login</title>
+    <link rel="stylesheet" href="/loggin.css" />
   </head>
 
   <body>
-    <h1>LOGIN</h1>
+    <h1>User Login</h1>
     <form action="/users/login" method="POST">
       <div>
         <label for="email"></label>
-        <input type="email" name="email" id="email" placeholder="Email" />
+        <input type="email" name="email" id="email" placeholder="Ingrese email" />
         <% if (locals.errors && errors.email) { %>
         <p class="text"><%= errors.email.msg %></p>
         <% } %>
       </div>
       <div>
         <label for="password"></label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Contraseña"
-        />
+        <input type="password" name="password" id="password" placeholder="Ingrese la contraseña"/>
       </div>
       <div>
         <label for="token">

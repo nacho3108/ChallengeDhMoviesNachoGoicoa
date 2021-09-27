@@ -10,7 +10,7 @@ const createError = require('http-errors');
 //const config = require("./config/config")
 require("dotenv").config();
 const models = require("./database/models/index");
-const autentificacion = require("./middlewares/autentificacion");
+const autentication = require("./middlewares/autentication");
 
 
 
@@ -41,7 +41,7 @@ app.use(
 
 app.use(cookieParser());
 
-app.use(autentificacion);
+app.use(autentication);
 
 app.use(methodOverride("_method"));
 
@@ -60,14 +60,18 @@ app.listen(process.env.PORT || 3000,function(){
 //app.use(notFound);
 
 //Route
-const rutaIndex = require("./routes/rutaIndex");
-const rutaUsuarios = require("./routes/rutaUsuarios");
-const rutaPeliculas = require("./routes/rutaPeliculas");
+const indexRoute = require("./routes/indexRoute");
+const usersRoute = require("./routes/usersRoute");
+const moviesRoute = require("./routes/moviesRoute");
 
-app.use("/", rutaIndex);
-app.use("/users", rutaUsuarios);
-app.use("/movies", rutaPeliculas);
+app.use("/", indexRoute);
+app.use("/users", usersRoute);
+app.use("/movies", moviesRoute);
 
+// catch 404
+app.use(function (req, res, next) {
+  next(createError(404));
+});
 
 // error handler
 app.use(function (err, req, res, next) {

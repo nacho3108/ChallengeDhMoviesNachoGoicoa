@@ -1,39 +1,37 @@
 const db = require("./../database/models");
-const todasMovies = db.Movie;
-const todosGenres = db.Genre;
+const allMovies = db.Movie;
+const allGenres = db.Genre;
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
 const { validationResult } = require("express-validator");
 
-const controladorPelicula = {
+const moviesController = {
   //get detail movie
   detail: (req, res) => {
-    todasMovies
+    allMovies
       .findByPk(req.params.id, {
         include: [{ association: "genre" }, { association: "actors" }],
       })
       .then((detail) => {
-        return res.render("detailMovies", {detail});
+        return res.render("detailMovies", { detail });
       })
-      
       .catch((error) => {
         return res.redirect(error);
       });
   },
 
-  //  GET  create form
-  
+  //get create form
   add: (req, res) => {
-    todosGenres
+    allGenres
       .findAll()
       .then((genre) => {
-        return res.render("crearPeliculas", {genre});
+        return res.render("createMovies", { genre });
       })
       .catch((error) => {
         return res.redirect(error);
       });
   },
-  // POST create form
+  //post create form
   create: (req, res) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
@@ -41,7 +39,7 @@ const controladorPelicula = {
         ...req.body,
         genre_id: req.body.genre,
       };
-      todasMovies
+      allMovies
         .create(newMovie)
         .then(() => {
           return res.redirect("/");
@@ -50,10 +48,10 @@ const controladorPelicula = {
           return res.redirect(error);
         });
     } else {
-      todosGenres
+      allGenres
         .findAll()
         .then((genre) => {
-          return res.render("crearPeliculas", {
+          return res.render("createMovies", {
             errors: errors.mapped(),
             old: req.body,
             genre,
@@ -65,16 +63,16 @@ const controladorPelicula = {
     }
   },
 
-  /// GET  edit form
+  /// get edit form
   update: (req, res) => {
-    const updateMovie = todasMovies.findByPk(req.params.id, {
+    const updateMovie = allMovies.findByPk(req.params.id, {
       include: ["genre"],
     });
-    const updateGenre = todosGenres.findAll();
+    const updateGenre = allGenres.findAll();
 
     Promise.all([updateMovie, updateGenre])
       .then(([movie, genre]) => {
-        return res.render("editarPelicula", { movie, genre });
+        return res.render("editMovies", { movie, genre });
       })
       .catch((error) => {
         return res.redirect(error);
@@ -85,7 +83,7 @@ const controladorPelicula = {
   edit: function (req, res) {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
-      todasMovies
+      allMovies
         .update(
           { ...req.body, genre_id: req.body.genre },
           { where: { id: req.params.id } }
@@ -97,14 +95,14 @@ const controladorPelicula = {
           return res.redirect(error);
         });
     } else {
-      const updateMovie = todasMovies.findByPk(req.params.id, {
+      const updateMovie = allMovies.findByPk(req.params.id, {
         include: ["genre"],
       });
-      const updateGenre = todosGenres.findAll();
+      const updateGenre = allGenres.findAll();
 
       Promise.all([updateMovie, updateGenre])
         .then(([movie, genre]) => {
-          return res.render("editarPelicula", {
+          return res.render("editMovies", {
             errors: errors.mapped(),
             old: req.body,
             genre,
@@ -117,16 +115,15 @@ const controladorPelicula = {
     }
   },
 
-  // DELETE
-
+  // delete form
   delete: function (req, res) {
-    todasMovies.findByPk(req.params.id).then((movies) => {
-      return res.render("borrarPelicula", { movies });
+    allMovies.findByPk(req.params.id).then((movies) => {
+      return res.render("deleteMovies", { movies });
     });
   },
 
   destroy: function (req, res) {
-    todasMovies
+    allMovies
       .destroy({ where: { id: req.params.id }, force: true })
       .then(() => {
         return res.redirect("/");
@@ -137,4 +134,4 @@ const controladorPelicula = {
   },
 };
 
-module.exports = controladorPelicula;
+module.exports = moviesController;

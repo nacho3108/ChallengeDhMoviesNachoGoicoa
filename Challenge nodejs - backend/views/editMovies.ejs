@@ -8,7 +8,7 @@
 
   <body>
     <h1>EDITAR PELICULAS</h1>
-    <form action="/movies/editarPelicula/<%= movie.id %>?_method=PUT" method="POST">
+    <form action="/movies/editMovies/<%= movie.id %>?_method=PUT" method="POST">
       <div>
         <label for="title">Título</label>
         <input type="text" name="title" id="title" value="<%= movie.title %>" />

@@ -1,10 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-//Requerimimos el controlador
-const main = require("../controllers/controladorIndex");
-
-// home 
+const main = require("../controllers/indexController");
 
 router.get("/", main.home);
 

@@ -4,7 +4,7 @@ const todosUsuarios = db.user;
 const sequelize = db.sequelize;
 const crypto = require("crypto");
 
-const controladorUsuario = {
+const controladorUsuarios = {
   register: (req, res) => {
     return res.render("register");
   },
@@ -85,4 +85,4 @@ const controladorUsuario = {
   },
 };
 
-module.exports = controladorUsuario;
+module.exports = controladorUsuarios;

@@ -5,7 +5,7 @@ const sequelize = db.sequelize;
 const { Op } = require("sequelize");
 const { validationResult } = require("express-validator");
 
-const moviesController = {
+const controladorPelicula = {
   //get detail movie
   detail: (req, res) => {
     todasMovies
@@ -27,7 +27,7 @@ const moviesController = {
     todosGenres
       .findAll()
       .then((genre) => {
-        return res.render("createMovies", {genre});
+        return res.render("crearPeliculas", {genre});
       })
       .catch((error) => {
         return res.redirect(error);
@@ -53,7 +53,7 @@ const moviesController = {
       todosGenres
         .findAll()
         .then((genre) => {
-          return res.render("createMovies", {
+          return res.render("crearPeliculas", {
             errors: errors.mapped(),
             old: req.body,
             genre,
@@ -74,7 +74,7 @@ const moviesController = {
 
     Promise.all([updateMovie, updateGenre])
       .then(([movie, genre]) => {
-        return res.render("editMovies", { movie, genre });
+        return res.render("editarPelicula", { movie, genre });
       })
       .catch((error) => {
         return res.redirect(error);
@@ -104,7 +104,7 @@ const moviesController = {
 
       Promise.all([updateMovie, updateGenre])
         .then(([movie, genre]) => {
-          return res.render("editMovies", {
+          return res.render("editarPelicula", {
             errors: errors.mapped(),
             old: req.body,
             genre,
@@ -121,7 +121,7 @@ const moviesController = {
 
   delete: function (req, res) {
     todasMovies.findByPk(req.params.id).then((movies) => {
-      return res.render("deleteMovies", { movies });
+      return res.render("borrarPelicula", { movies });
     });
   },
 
@@ -137,4 +137,4 @@ const moviesController = {
   },
 };
 
-module.exports = moviesController;
+module.exports = controladorPelicula;

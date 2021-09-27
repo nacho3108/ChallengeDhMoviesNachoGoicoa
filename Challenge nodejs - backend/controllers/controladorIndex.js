@@ -1,16 +1,16 @@
 const db = require("./../database/models");
 
-const allMovies = db.Movie;
+const todasPeliculas = db.Movie;
 
 const sequelize = db.sequelize;
 
 const main = {
 
   home: (req, res) => {
-    allMovies
+    todasPeliculas
       .findAll()
-      .then((allMovie) => {
-        return res.render("index", {allMovie});
+      .then((todasPeliculas) => {
+        return res.render("index", {todasPeliculas});
       })
       //Si surge algun error
       .catch((error) => {

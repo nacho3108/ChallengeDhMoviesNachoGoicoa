@@ -12,6 +12,8 @@ require("dotenv").config();
 const models = require("./database/models/index");
 const autentificacion = require("./middlewares/autentificacion");
 
+
+
 // Configuración de Express
 const app = express();
 
@@ -47,6 +49,8 @@ const staticFolder = path.resolve(__dirname, "./public");
 
 app.use(express.static(staticFolder));
 
+
+
 // Ejecución del servidor de Express con puerto para Heroku
 app.listen(process.env.PORT || 3000,function(){
     console.log('Servidor corriendo en el puerto 3000')
@@ -64,10 +68,6 @@ app.use("/", rutaIndex);
 app.use("/users", rutaUsuarios);
 app.use("/movies", rutaPeliculas);
 
-// catch 404
-app.use(function (req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 app.use(function (err, req, res, next) {

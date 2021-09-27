@@ -13,7 +13,7 @@ const admin = require("../middlewares/permisoAdministrador");
 
 //GET detalle de la pelicual
 
-router.get("/detallePelicula/:id", controladorPelicula.detail);
+router.get("/detailMovies/:id", controladorPelicula.detail);
 
 //crear la pelicula en formulario
 

@@ -14,7 +14,7 @@
           <button><a href="/users/login">Login</a></button>
         </div>
         <div>
-          <button><a href="/users/register">Registro</a></button>
+          <button><a href="/users/registracion">Registro</a></button>
         </div>
         <% } else { %>
         <div>
@@ -25,7 +25,7 @@
         </div>
         <div>
           <button>
-            <a href="/movies/createMovies">Agregar Película</a>
+            <a href="/movies/crearPelicula">Agregar Película</a>
           </button>
         </div>
         <% } %>
@@ -33,11 +33,11 @@
 
       <section>
         <h2>LISTADO de PELICULAS</h2>
-        <% for (let i=0; i < allMovie.length; i++) { %>
+        <% for (let i=0; i < todasPeliculas.length; i++) { %>
         <ul>
           <li>
-            <a href="/movies/detailMovies/<%= allMovie[i].id %>">
-              <%= allMovie[i].title %>
+            <a href="/movies/detailMovies/<%= todasPeliculas[i].id %>">
+              <%= todasPeliculas[i].title %>
             </a>
           </li>
         </ul>

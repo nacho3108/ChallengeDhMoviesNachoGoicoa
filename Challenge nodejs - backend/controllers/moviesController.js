@@ -115,17 +115,19 @@ const moviesController = {
     }
   },
 
-  // delete form
+  
+  //delete form
   delete: function (req, res) {
+    
     allMovies.findByPk(req.params.id).then((movies) => {
       return res.render("deleteMovies", { movies });
     });
   },
 
+  //No puedo borrar cualquier pelicula, solo borro las que creo, en mi entender es porque la tabla esta macheada con los actores y no me da permiso
   destroy: function (req, res) {
-    allMovies
-      .destroy({ where: { id: req.params.id }, force: true })
-      .then(() => {
+
+    allMovies.destroy({ where: { id: req.params.id }, force: true }).then(() => {
         return res.redirect("/");
       })
       .catch(() => {

@@ -2,23 +2,23 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/loggin.css" />
     
     
   </head>
 
   <body>
-    <h1>ELIMINAR PELICULA</h1>
+    <button><a href="/">Volver a la página de listado</a></button>
+    <h1>Eliminación</h1>
     <section>
       <form action="/movies/deleteMovies/<%= movies.id %>?_method=DELETE" method="POST"class="form-menu">
       <div>
-          <p>¿ Seguro que quiere eliminar: <%= movies.title %>?</p>
+          <p>¿Usted está seguro que quiere eliminar la película? <%= movies.title %>?</p>
       </div>
         <button type="submit">Borrar película</button>
       </form>
     </section>
 
-    <div>
-      <button><a href="/"> Volver al Listado de películas</a></button>
-    </div>
+    
   </body>
 </html>

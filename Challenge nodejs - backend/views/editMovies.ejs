@@ -2,12 +2,12 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/loggin.css" />
   </head>
 
   <body>
-    <h1>EDITAR PELICULAS</h1>
+    <button><a href="/">Volver a la página de listado</a></button>
+    <h1>Edición</h1>
     <form action="/movies/editMovies/<%= movie.id %>?_method=PUT" method="POST">
       <div>
         <label for="title">Título</label>
@@ -81,6 +81,5 @@
       <button type="submit">Guardar</button>
       <button type="reset">Cancelar</button>
     </form>
-    <button><a href="/">Volver al listado de películas</a></button>
-  </body>
+    </body>
 </html>

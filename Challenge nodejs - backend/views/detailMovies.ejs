@@ -2,16 +2,16 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/loggin.css" />
   </head>
   <body>
+    <button><a href="/">Volver a la página de listado</a></button>
     <section>
-      <h1>DETALLE PELICULA</h1>
+      <h1>Informaciòn de la Pelicula</h1>
       <article>
-        <p>Título: <%= detail.title %></p>
-        <p>Rating: <%= detail.rating %></p>
-        <p>Premios: <%= detail.awards %></p>
+        <p>Título de la Película: <%= detail.title %></p>
+        <p>Rating de la Pelicula: <%= detail.rating %></p>
+        <p>Premios ganados: <%= detail.awards %></p>
         <p>Fecha de estreno: <%= detail.release_date %></p>
         <p>Duración: <%= detail.length %></p>
         <p>Género: <%= detail.genre.name %></p>
@@ -36,7 +36,7 @@
       <button>
         <a href="/movies/editMovies/<%= detail.id %>">Modificar Película</a>
       </button>
-      <button><a href="/">Volver al listado de películas</a></button>
+      
       <% } %>
     </section>
   </body>
